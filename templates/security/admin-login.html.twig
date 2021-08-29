@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+    <div class="modal-form  js-modal-content">
+        <form action="{{ path('admin_login_check') }}" method="post">
+            <div class="modal-form__content">
+                <div class="modal-form__title">
+                    {% trans %}Please sign in{% endtrans %}
+                </div>
+
+                {% if error %}
+                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+{#                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>#}
+                {% endif %}
+                <div class="modal-form__fields">
+                    <div class="modal-form__list">
+                        <div class="modal-form__box">
+
+                            <input class="modal-form__input input form-control"   type="email" value="{{ last_username }}" name="email" id="inputEmail" required
+                                   autofocus placeholder="E-Mail">
+
+                        </div>
+                        <div class="modal-form__box">
+                            <div class="modal-form-split">
+                                <div class="modal-form-split__inner">
+                                    <div class="modal-form-split__wrapper">
+                                        <div class="modal-form-split__box">
+                                            <div class="modal-form-split__item">
+                                                <div class="modal-form__box">
+
+                                                    {% if error %}
+                                                        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                                                        {#                    <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>#}
+                                                    {% endif %}
+                                                    <input type="password" name="password" id="inputPassword"
+                                                           class="form-control modal-form__input input js-contact-group"
+                                                           placeholder="Password" required>
+
+                                                    <input type="hidden" name="_csrf_token"
+                                                           value="{{ csrf_token('authenticate') }}"
+                                                    >
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="modal-form__btn-box">
+                        <button type="submit" class="modal-form__btn btn btn--type-1">
+                            {% trans %}LogIN{% endtrans %}
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+        </form>
+        </div>
+
+
+
+{% endblock %}
